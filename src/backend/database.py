@@ -5,11 +5,83 @@ MongoDB database configuration and setup for Mergington High School API
 from pymongo import MongoClient
 from argon2 import PasswordHasher
 
-# Connect to MongoDB
-client = MongoClient('mongodb://localhost:27017/')
-db = client['mergington_high']
-activities_collection = db['activities']
-teachers_collection = db['teachers']
+# Try to connect to MongoDB, use mock if not available
+try:
+    client = MongoClient('mongodb://localhost:27017/', serverSelectionTimeoutMS=5000)
+    # Test the connection
+    client.admin.command('ismaster')
+    db = client['mergington_high']
+    activities_collection = db['activities']
+    teachers_collection = db['teachers']
+    USE_MONGODB = True
+    print("Using MongoDB")
+except Exception as e:
+    print(f"MongoDB not available ({e}), using mock database for testing")
+    USE_MONGODB = False
+    
+    # Simple mock collection class
+    class MockCollection:
+        def __init__(self, initial_data):
+            self.data = {}
+            for name, details in initial_data.items():
+                self.data[name] = details
+        
+        def find(self, query=None):
+            if query is None:
+                # Return all documents with _id
+                result = []
+                for name, doc in self.data.items():
+                    result.append({"_id": name, **doc})
+                return result
+            
+            # Simple filtering for testing
+            result = []
+            for name, doc in self.data.items():
+                match = True
+                
+                # Check difficulty filter
+                if "difficulty" in query:
+                    if "$exists" in query["difficulty"]:
+                        if query["difficulty"]["$exists"] == False:
+                            if "difficulty" in doc:
+                                match = False
+                        else:
+                            if "difficulty" not in doc:
+                                match = False
+                    else:
+                        if doc.get("difficulty") != query["difficulty"]:
+                            match = False
+                
+                # Check day filter
+                if "schedule_details.days" in query and "$in" in query["schedule_details.days"]:
+                    target_day = query["schedule_details.days"]["$in"][0]
+                    if target_day not in doc.get("schedule_details", {}).get("days", []):
+                        match = False
+                
+                if match:
+                    result.append({"_id": name, **doc})
+            
+            return result
+        
+        def count_documents(self, query):
+            return len(self.find(query))
+        
+        def find_one(self, query):
+            results = self.find(query)
+            return results[0] if results else None
+        
+        def insert_one(self, doc):
+            # Simplified insert
+            pass
+        
+        def update_one(self, query, update):
+            # Simplified update
+            class MockResult:
+                modified_count = 1
+            return MockResult()
+    
+    activities_collection = MockCollection({})
+    teachers_collection = MockCollection({})
 
 # Methods
 def hash_password(password):
@@ -19,16 +91,26 @@ def hash_password(password):
 
 def init_database():
     """Initialize database if empty"""
-
-    # Initialize activities if empty
-    if activities_collection.count_documents({}) == 0:
-        for name, details in initial_activities.items():
-            activities_collection.insert_one({"_id": name, **details})
-            
-    # Initialize teacher accounts if empty
-    if teachers_collection.count_documents({}) == 0:
+    
+    if USE_MONGODB:
+        # Initialize activities if empty
+        if activities_collection.count_documents({}) == 0:
+            for name, details in initial_activities.items():
+                activities_collection.insert_one({"_id": name, **details})
+                
+        # Initialize teacher accounts if empty
+        if teachers_collection.count_documents({}) == 0:
+            for teacher in initial_teachers:
+                teachers_collection.insert_one({"_id": teacher["username"], **teacher})
+    else:
+        # Initialize mock database
+        activities_collection.data = initial_activities.copy()
+        
+        # Initialize mock teachers
+        teacher_data = {}
         for teacher in initial_teachers:
-            teachers_collection.insert_one({"_id": teacher["username"], **teacher})
+            teacher_data[teacher["username"]] = teacher.copy()
+        teachers_collection.data = teacher_data
 
 # Initial database if empty
 initial_activities = {
@@ -41,7 +123,8 @@ initial_activities = {
             "end_time": "16:45"
         },
         "max_participants": 12,
-        "participants": ["michael@mergington.edu", "daniel@mergington.edu"]
+        "participants": ["michael@mergington.edu", "daniel@mergington.edu"],
+        "difficulty": "Beginner"
     },
     "Programming Class": {
         "description": "Learn programming fundamentals and build software projects",
@@ -52,7 +135,8 @@ initial_activities = {
             "end_time": "08:00"
         },
         "max_participants": 20,
-        "participants": ["emma@mergington.edu", "sophia@mergington.edu"]
+        "participants": ["emma@mergington.edu", "sophia@mergington.edu"],
+        "difficulty": "Intermediate"
     },
     "Morning Fitness": {
         "description": "Early morning physical training and exercises",
@@ -118,7 +202,8 @@ initial_activities = {
             "end_time": "08:00"
         },
         "max_participants": 10,
-        "participants": ["james@mergington.edu", "benjamin@mergington.edu"]
+        "participants": ["james@mergington.edu", "benjamin@mergington.edu"],
+        "difficulty": "Advanced"
     },
     "Debate Team": {
         "description": "Develop public speaking and argumentation skills",
@@ -129,7 +214,8 @@ initial_activities = {
             "end_time": "17:30"
         },
         "max_participants": 12,
-        "participants": ["charlotte@mergington.edu", "amelia@mergington.edu"]
+        "participants": ["charlotte@mergington.edu", "amelia@mergington.edu"],
+        "difficulty": "Intermediate"
     },
     "Weekend Robotics Workshop": {
         "description": "Build and program robots in our state-of-the-art workshop",
@@ -140,7 +226,8 @@ initial_activities = {
             "end_time": "14:00"
         },
         "max_participants": 15,
-        "participants": ["ethan@mergington.edu", "oliver@mergington.edu"]
+        "participants": ["ethan@mergington.edu", "oliver@mergington.edu"],
+        "difficulty": "Advanced"
     },
     "Science Olympiad": {
         "description": "Weekend science competition preparation for regional and state events",
