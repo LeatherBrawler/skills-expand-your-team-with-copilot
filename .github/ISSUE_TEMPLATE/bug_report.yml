@@ -1,0 +1,95 @@
+name: 🐛 Bug Report
+description: Report a problem with the website or application
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out this form completely to help us understand and fix the issue quickly.
+
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: Problem Description
+      description: Clearly describe what is broken or not working as expected
+      placeholder: "Example: Students cannot sign up for the Drama Club activity. When they click the signup button, nothing happens."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: "Example: After clicking signup, the student should be enrolled and see a confirmation message."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happens? Include any error messages you see.
+      placeholder: "Example: Nothing happens when clicking the button. No error message is shown."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: How can someone else see this bug? List the exact steps.
+      placeholder: |
+        1. Go to the activities page
+        2. Find the Drama Club activity
+        3. Click the "Sign Up" button
+        4. Notice nothing happens
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: What part of the website is affected?
+      options:
+        - Activities list/viewing
+        - Student signup process
+        - Activity management
+        - User authentication
+        - Website appearance/styling
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: What browser are you using?
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other (specify in additional context)
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information that might help us fix this bug
+      placeholder: "Example: This only happens with certain activities, or only for certain students, or it started happening after a recent change."
+
+  - type: checkboxes
+    id: urgency
+    attributes:
+      label: How urgent is this issue?
+      options:
+        - label: This is blocking students from participating in activities
+        - label: This affects many users but there's a workaround
+        - label: This is a minor issue that can wait
+        - label: This is just a visual/cosmetic problem

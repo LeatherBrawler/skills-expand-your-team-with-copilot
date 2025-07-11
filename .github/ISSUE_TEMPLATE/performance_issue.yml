@@ -1,0 +1,135 @@
+name: ⚡ Performance Issue
+description: Report slow loading, responsiveness problems, or technical performance issues
+title: "[Performance]: "
+labels: ["performance", "technical", "needs-investigation"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a performance issue! This helps us ensure the website works well for all students and teachers.
+
+  - type: textarea
+    id: performance-problem
+    attributes:
+      label: Performance Problem Description
+      description: Describe what is slow or not working smoothly
+      placeholder: "Example: The activities page takes 10+ seconds to load, or the signup button is very slow to respond when clicked"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: performance-area
+    attributes:
+      label: What part of the website has performance issues?
+      options:
+        - Page loading speed
+        - Button/link responsiveness
+        - Search functionality
+        - Activity signup process
+        - Image/media loading
+        - Overall website navigation
+        - Mobile device performance
+        - Multiple areas
+    validations:
+      required: true
+
+  - type: dropdown
+    id: when-occurs
+    attributes:
+      label: When does this performance issue occur?
+      options:
+        - Always/consistently
+        - During busy times (lunch, after school)
+        - Only on certain pages
+        - Only with certain activities
+        - Only on mobile devices
+        - Randomly/intermittently
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce the Performance Issue
+      description: How can someone else experience this slow performance?
+      placeholder: |
+        1. Go to the activities page
+        2. Notice the page takes a long time to load
+        3. Try to click on an activity
+        4. Notice the click response is delayed
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device-type
+    attributes:
+      label: What type of device are you using?
+      options:
+        - Desktop computer
+        - Laptop
+        - Tablet
+        - Smartphone
+        - School computer/lab
+        - Multiple device types
+    validations:
+      required: true
+
+  - type: dropdown
+    id: internet-connection
+    attributes:
+      label: What type of internet connection?
+      options:
+        - School WiFi
+        - Home internet
+        - Mobile data
+        - Not sure
+        - Multiple connection types
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected-performance
+    attributes:
+      label: Expected Performance
+      description: How fast should this be working?
+      placeholder: "Example: The page should load in 2-3 seconds, buttons should respond immediately when clicked"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-performance
+    attributes:
+      label: Actual Performance
+      description: How slow is it actually performing? Be as specific as possible.
+      placeholder: "Example: Takes 15-20 seconds to load, buttons take 5+ seconds to respond, sometimes doesn't load at all"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: impact-level
+    attributes:
+      label: How does this performance issue affect users?
+      options:
+        - label: Prevents students from using the website effectively
+        - label: Makes the website frustrating or difficult to use
+        - label: Causes some inconvenience but website is still usable
+        - label: Minor issue that most users probably don't notice
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information about this performance issue
+      placeholder: "Example: This started happening recently, only affects certain students, happens more during certain times of day, or comparison to how other websites perform"
+
+  - type: checkboxes
+    id: urgency
+    attributes:
+      label: How urgent is fixing this performance issue?
+      options:
+        - label: Critical - website is barely usable
+        - label: High - significantly impacts daily use
+        - label: Medium - affects user experience but manageable
+        - label: Low - minor optimization opportunity

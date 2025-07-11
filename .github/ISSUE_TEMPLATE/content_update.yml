@@ -1,0 +1,104 @@
+name: 📝 Content Update
+description: Request changes to text, activity information, or other content on the website
+title: "[Content]: "
+labels: ["content", "documentation", "needs-review"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep our website content accurate and up-to-date! Please provide specific details about what needs to be changed.
+
+  - type: dropdown
+    id: content-type
+    attributes:
+      label: What type of content needs to be updated?
+      options:
+        - Activity information (name, description, schedule)
+        - Website text/copy
+        - Help/instruction text
+        - Error messages
+        - Navigation labels
+        - Page titles/headings
+        - Contact information
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-content
+    attributes:
+      label: Current Content
+      description: What does the website currently say? (Copy and paste the exact text if possible)
+      placeholder: 'Example: "Drama Club - Learn acting skills and perform in school plays. Meets Mondays 3-5 PM"'
+    validations:
+      required: true
+
+  - type: textarea
+    id: new-content
+    attributes:
+      label: New/Corrected Content
+      description: What should it say instead? Provide the exact text you want to appear
+      placeholder: 'Example: "Drama Club - Develop acting skills and perform in seasonal school productions. Meets Mondays 3:30-5:30 PM in the auditorium. Open to all grade levels."'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: content-location
+    attributes:
+      label: Where on the website is this content located?
+      options:
+        - Homepage
+        - Activities list page
+        - Specific activity details
+        - Navigation menu
+        - Footer
+        - Error/help pages
+        - Multiple pages
+        - Not sure (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason-for-change
+    attributes:
+      label: Reason for Content Change
+      description: Why does this content need to be updated?
+      placeholder: "Example: The meeting time changed, there was a typo, information is outdated, or we need to add important details students are asking about"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-locations
+    attributes:
+      label: Additional Details
+      description: Any other context about where this content appears or related changes needed
+      placeholder: "Example: This text also appears in the signup confirmation email, or this affects multiple activities, or this should match our printed brochures"
+
+  - type: checkboxes
+    id: content-urgency
+    attributes:
+      label: How urgent is this content update?
+      options:
+        - label: Critical - contains incorrect information that could confuse students
+        - label: Important - information is outdated and should be updated soon
+        - label: Moderate - would improve clarity or accuracy
+        - label: Low priority - minor improvement or enhancement
+
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Content Verification
+      options:
+        - label: I have verified this information is accurate
+        - label: This has been approved by the appropriate department/teacher
+        - label: I have the authority to request this content change
+        - label: This change affects only content, not functionality
+
+  - type: textarea
+    id: approval-info
+    attributes:
+      label: Approval Information (if applicable)
+      description: If this content change needs specific approval, provide details
+      placeholder: "Example: Approved by the Drama Club advisor, or verified with the main office, or matches the updated school handbook"
