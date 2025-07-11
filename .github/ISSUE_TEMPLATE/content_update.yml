@@ -70,11 +70,27 @@ body:
       required: true
 
   - type: textarea
-    id: additional-locations
+    id: implementation-hints
     attributes:
-      label: Additional Details
-      description: Any other context about where this content appears or related changes needed
-      placeholder: "Example: This text also appears in the signup confirmation email, or this affects multiple activities, or this should match our printed brochures"
+      label: Implementation Hints
+      description: Any specific guidance about how to make this change or where to find the content
+      placeholder: "Example: This text is in the activity database, or this appears on the homepage header, or this content should match the text in our school handbook page 15"
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: How will you know this change is complete?
+      description: What should the final result look like when this content update is finished?
+      placeholder: "Example: The Drama Club description shows the correct meeting time on all pages, and the signup confirmation mentions the new location"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information about this content change
+      placeholder: "Example: This change affects multiple activities, or this should match our printed brochures, or this relates to recent policy changes"
 
   - type: checkboxes
     id: content-urgency
