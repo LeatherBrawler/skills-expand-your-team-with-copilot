@@ -66,3 +66,17 @@ These dependencies will be installed when you run `pip install -r requirements.t
 
 > [!IMPORTANT]
 > All data is stored in memory, which means data will be reset when the server restarts.
+
+## For Teachers and Staff
+
+If you need changes to the website, please use our structured issue templates instead of modifying code directly:
+
+📋 **[Teacher's Guide to Requesting Website Changes](teacher-issue-guide.md)** - Complete guide on how to request changes
+
+🐛 **Bug Reports** - Report problems or broken functionality  
+✨ **Feature Requests** - Request new functionality  
+🎨 **Design Changes** - Request visual/branding updates  
+📝 **Content Updates** - Request text or content changes  
+⚡ **Performance Issues** - Report slow or unresponsive behavior  
+
+These templates ensure GitHub Copilot coding agent has all the information needed to implement your requests quickly and accurately.

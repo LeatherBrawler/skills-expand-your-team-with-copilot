@@ -1,0 +1,106 @@
+name: ✨ Feature Request
+description: Request a new feature or enhancement to the website
+title: "[Feature]: "
+labels: ["enhancement", "needs-review"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please provide as much detail as possible to help us understand your request.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: Clearly describe what new functionality you'd like to see
+      placeholder: "Example: Add a calendar view to see all activities organized by date and time"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-solving
+    attributes:
+      label: What problem does this solve?
+      description: Explain why this feature would be helpful for teachers and students
+      placeholder: "Example: Teachers need to see scheduling conflicts between activities, and students want to see when activities meet before signing up."
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: What specific requirements must be met for this feature to be complete?
+      placeholder: |
+        Example:
+        - Users can switch between list view and calendar view
+        - Calendar shows activities in weekly format (Sunday-Saturday)
+        - Activities appear at their scheduled times
+        - Multiple activities at same time show side-by-side
+        - Clicking an activity shows full details
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-area
+    attributes:
+      label: What area of the website should this feature be added to?
+      options:
+        - Activities page/listing
+        - Student signup process
+        - Activity management
+        - Navigation/menu
+        - New page/section
+        - Overall website design
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user-type
+    attributes:
+      label: Who would primarily use this feature?
+      options:
+        - Students viewing activities
+        - Students signing up for activities
+        - Teachers managing activities
+        - School administrators
+        - All users
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-solution
+    attributes:
+      label: Suggested Implementation (Optional)
+      description: If you have ideas about how this could be built, share them here
+      placeholder: "Example: Add a toggle button in the header, create a new calendar component using HTML/CSS grid, store time information for each activity"
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information, examples from other websites, or related considerations
+      placeholder: "Example: Similar to how Google Calendar works, or this would work well with the existing activity management system"
+
+  - type: checkboxes
+    id: feature-priority
+    attributes:
+      label: How important is this feature?
+      options:
+        - label: This is essential for our school's operations
+        - label: This would significantly improve the user experience
+        - label: This would be nice to have but isn't urgent
+        - label: This is just an idea for future consideration
+
+  - type: checkboxes
+    id: complexity-understanding
+    attributes:
+      label: Implementation Considerations
+      options:
+        - label: I understand this might require changes to the database
+        - label: I understand this might affect existing functionality
+        - label: I understand this might take significant development time
+        - label: I'm open to alternative solutions that solve the same problem

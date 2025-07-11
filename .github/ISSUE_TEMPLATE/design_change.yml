@@ -1,0 +1,122 @@
+name: 🎨 Design/UI Change
+description: Request changes to the website's appearance, layout, or visual design
+title: "[Design]: "
+labels: ["design", "ui/ux", "needs-review"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a design improvement! Visual changes help make our website more accessible and appealing to students.
+
+  - type: textarea
+    id: current-design-issue
+    attributes:
+      label: Current Design Issue
+      description: Describe what doesn't look right or work well with the current design
+      placeholder: "Example: The website uses blue colors, but our school colors are white and lime green. It doesn't reflect our school's branding."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-design
+    attributes:
+      label: Proposed Design Changes
+      description: Describe exactly what you'd like the new design to look like
+      placeholder: "Example: Change the primary color scheme to use lime green (#32CD32) and white, update the header background, and add our school mascot from the octodex gallery."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: design-area
+    attributes:
+      label: What part of the website needs design changes?
+      options:
+        - Colors/theme
+        - Typography/fonts
+        - Layout/spacing
+        - Images/graphics
+        - Navigation/buttons
+        - Activity cards/display
+        - Header/footer
+        - Entire website
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: design-priority
+    attributes:
+      label: What type of design change is this?
+      options:
+        - School branding/colors
+        - Accessibility improvement
+        - Visual appeal/aesthetics
+        - User experience improvement
+        - Mobile/responsive design
+        - Professional appearance
+    validations:
+      required: true
+
+  - type: textarea
+    id: brand-requirements
+    attributes:
+      label: Brand/Style Requirements
+      description: Provide specific details about colors, fonts, images, or branding elements
+      placeholder: |
+        Example:
+        - Primary color: Lime green (#32CD32)
+        - Secondary color: White (#FFFFFF)
+        - School mascot: Choose from https://octodex.github.com/
+        - Font: Keep current font but make headers larger
+        - Logo: Use school logo if available
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How will we know this design change is complete and successful?
+      placeholder: |
+        Example:
+        - Website header uses lime green background
+        - All buttons use school colors
+        - School mascot appears prominently on homepage
+        - Colors are consistent across all pages
+        - Design looks good on both desktop and mobile
+    validations:
+      required: true
+
+  - type: textarea
+    id: inspiration
+    attributes:
+      label: Design Inspiration (Optional)
+      description: Links to other websites, color palettes, or examples that show what you're looking for
+      placeholder: "Example: Like the design at www.example-school.edu, or similar to Google's material design, or inspired by our school's printed materials"
+
+  - type: checkboxes
+    id: device-requirements
+    attributes:
+      label: What devices should this design work well on?
+      options:
+        - label: Desktop computers
+        - label: Tablet devices
+        - label: Mobile phones
+        - label: All devices (responsive)
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other design considerations, constraints, or related information
+      placeholder: "Example: This should match our school's printed brochures, or we're trying to make the site more appealing to students, or this needs to be accessible for students with visual impairments"
+
+  - type: checkboxes
+    id: urgency
+    attributes:
+      label: How urgent is this design change?
+      options:
+        - label: Needed before a specific event/deadline
+        - label: Important for school branding/identity
+        - label: Would improve user experience significantly
+        - label: Nice to have when time permits
